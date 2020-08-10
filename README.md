@@ -16,7 +16,6 @@ import (
 url, _ := bili.WatermarkRemover("https://www.bilibili.com/video/BV1p5411879s")
 
 
-
 fmt.Println(url)
 // 
 
