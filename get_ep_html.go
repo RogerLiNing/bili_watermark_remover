@@ -1,10 +1,7 @@
 package bili
 
 import (
-	"encoding/json"
-	"fmt"
 	"regexp"
-	"strconv"
 )
 
 type VideoJson struct {
@@ -13,22 +10,23 @@ type VideoJson struct {
 
 func GetEpIdFromHtml(content string) string {
 	//解析正则表达式，如果成功返回解释器
-	reg := regexp.MustCompile(`"epInfo":(.*),"epList`)
-
+	// reg := regexp.MustCompile(`"epInfo":(.*),"epList`)
+	// fmt.Println(content)
+	reg := regexp.MustCompile(`"epList":\[{"loaded":false,"id":(.*?),"badge":""`)
 	//根据规则提取关键信息
 	result := reg.FindAllStringSubmatch(content,-1)
-	var videoJsonStr string
+	//var videoJsonStr string
 
-	v := &VideoJson{}
-
+	// v := &VideoJson{}
+	videoId := ""
 	if len(result) > 0 {
-		videoJsonStr = result[0][1]
+		videoId = result[0][1]
 
-		err := json.Unmarshal([]byte(videoJsonStr), v)
-		if err != nil {
-			fmt.Println(err)
-		}
+		//err := json.Unmarshal([]byte(videoJsonStr), v)
+		//if err != nil {
+		//	fmt.Println(err)
+		//}
 	}
 
-	return strconv.Itoa(v.Id)
+	return videoId //strconv.Itoa(v.Id)
 }
