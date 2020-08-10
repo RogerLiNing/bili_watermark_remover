@@ -1,4 +1,4 @@
-package bilibili
+package bili
 
 func WatermarkRemover(url string)(string, error)  {
 

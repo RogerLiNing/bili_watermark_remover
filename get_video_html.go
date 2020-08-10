@@ -1,4 +1,4 @@
-package bilibili
+package bili
 
 import (
 	"io/ioutil"
